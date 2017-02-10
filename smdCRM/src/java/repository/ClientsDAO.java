@@ -5,6 +5,7 @@
  */
 package repository;
 
+import static com.sun.xml.ws.security.impl.policy.Constants.logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,14 +24,13 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 public class ClientsDAO {
     JdbcTemplate template;
     
-        private static final Logger logger = Logger.getLogger(ClientsDAO.class.getName());
-        
+              
     public void setTemplate(JdbcTemplate template){
         this.template = template;
     }
     
     public int save(Clients name){
-        String sql = "INSERT INTO Clients (name) values(?)";
+        String sql = "INSERT INTO clients (name) values(?)";
 
         Object[] values = {name.getName()};
 
@@ -38,7 +38,7 @@ public class ClientsDAO {
     }
     
     public int update(Clients name){
-        String sql = "UPDATE Clients SET name=? WHERE Id = ?";
+        String sql = "UPDATE clients SET name=? WHERE id = ?";
 
         Object[] values = {name.getName(),name.getId()};
 
@@ -46,7 +46,7 @@ public class ClientsDAO {
     }
     
     public int delete(int id){
-        String sql = "DELETE FROM Clients WHERE Id = ?";
+        String sql = "DELETE FROM clients WHERE id = ?";
 
         Object[] values = {id};
 
@@ -66,12 +66,12 @@ public class ClientsDAO {
     
     public Clients getClientById(int id){
         logger.info("Get client by ID: " + id);
-        String sql = "SELECT id AS id, name FROM Clients WHERE id = ?";
+        String sql = "SELECT id AS id, name FROM clients WHERE id = ?";
         return template.queryForObject(sql,new Object[]{id},new BeanPropertyRowMapper<Clients>(Clients.class));
     }
     
     public List<Clients> getClientsByPage(int start, int total){
-        String sql = "SELECT * FROM Clients LIMIT " + (start - 1) + "," + total;
+        String sql = "SELECT * FROM clients LIMIT " + (start - 1) + "," + total;
         return template.query(sql,new RowMapper<Clients>(){
             public Clients mapRow(ResultSet rs,int row) throws SQLException{
                 Clients a = new Clients();
@@ -83,7 +83,7 @@ public class ClientsDAO {
     }
     
     public int getClientsCount() {
-        String sql = "SELECT COUNT(id) AS rowcount FROM Clients";
+        String sql = "SELECT COUNT(id) AS rowcount FROM clients";
         SqlRowSet rs = template.queryForRowSet(sql);
         
         if (rs.next()) {

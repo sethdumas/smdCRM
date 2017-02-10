@@ -44,8 +44,5 @@ public class InteractionsDAO {
 
         return template.update(sql,values);
     }
-     
-    
-     
-     
+          
 }

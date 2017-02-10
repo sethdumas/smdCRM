@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repository;
+package validation;
 
 /**
  *
  * @author sethd
  */
-public class UsersDAO {
+public class ItemsValidator {
     
 }

@@ -24,7 +24,8 @@ public class Clients implements Serializable {
     public void setId(int i) {
         id = i;
     }
-
+    
+    
     public int getId() {
         return id;
     }
@@ -36,6 +37,7 @@ public class Clients implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public boolean isProspect() {
         return prospect;
@@ -112,7 +114,7 @@ public class Clients implements Serializable {
     public String toString() {
         StringBuffer buffer = new StringBuffer();
         buffer.append("ID: " + this.id + ";");
-        buffer.append("Name: " + name);
+        buffer.append("Name: " + this.name);
         return buffer.toString();
     }
 }
