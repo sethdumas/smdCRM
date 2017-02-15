@@ -29,18 +29,20 @@ public class ClientsDAO {
         this.template = template;
     }
     
-    public int save(Clients name){
-        String sql = "INSERT INTO clients (name) values(?)";
+    public int save(Clients clients){
+        String sql = "INSERT INTO clients ('firstname', 'lastname', 'company', 'address1', address2', 'city', 'state', 'zip', 'phone', 'email', 'prospect')"
+                + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        Object[] values = {name.getName()};
+        Object[] values = {clients.getFirstname(), clients.getLastname(), clients.getCompany(), clients.getAddress1(), clients.getAddress2(), clients.getCity(), clients.getState(), clients.getZip(), clients.getPhone(), clients.getEmail(), clients.isProspect()};
 
         return template.update(sql,values);
     }
     
-    public int update(Clients name){
-        String sql = "UPDATE clients SET name=? WHERE id = ?";
+    public int update(Clients clients){
+        String sql = "UPDATE clients SET 'firstname' = ?, 'lastname' = ?, 'company' = ?, 'address1' = ?, address2' = ?, 'city' = ?, 'state' = ?, 'zip' = ?, 'phone' = ?, 'email' = ?, 'prospect' = ?)"
+                + "WHERE id = ?";
 
-        Object[] values = {name.getName(),name.getId()};
+        Object[] values = {clients.getFirstname(), clients.getLastname(), clients.getCompany(), clients.getAddress1(), clients.getAddress2(), clients.getCity(), clients.getState(), clients.getZip(), clients.getPhone(), clients.getEmail(), clients.isProspect()};
 
         return template.update(sql,values);
     }
@@ -54,11 +56,14 @@ public class ClientsDAO {
     }
     
     public List<Clients> getClientList(){
-        return template.query("SELECT * FROM name",new RowMapper<Clients>(){
+        return template.query("SELECT * FROM clients",new RowMapper<Clients>(){
+           @Override
             public Clients mapRow(ResultSet rs,int row) throws SQLException{
                 Clients a = new Clients();
                 a.setId(rs.getInt("id"));
-                a.setName(rs.getString("name"));
+                a.setFirstname(rs.getString("firstname"));
+                a.setLastname(rs.getString("lastname"));
+                
                 return a;
             }
         });
@@ -73,10 +78,22 @@ public class ClientsDAO {
     public List<Clients> getClientsByPage(int start, int total){
         String sql = "SELECT * FROM clients LIMIT " + (start - 1) + "," + total;
         return template.query(sql,new RowMapper<Clients>(){
+            @Override
             public Clients mapRow(ResultSet rs,int row) throws SQLException{
                 Clients a = new Clients();
                 a.setId(rs.getInt(1));
-                a.setName(rs.getString(2));
+                a.setFirstname(rs.getString(2));
+                a.setLastname(rs.getString(3));
+                a.setCompany(rs.getString(4));
+                a.setAddress1(rs.getString(5));
+                a.setAddress2(rs.getString(6));
+                a.setCity(rs.getString(7));
+                a.setState(rs.getString(8));
+                a.setZip(rs.getInt(9));
+                a.setPhone(rs.getInt(10));
+                a.setEmail(rs.getString(11));
+                a.setProspect(rs.getBoolean(12));
+                                
                 return a;
             }
         });

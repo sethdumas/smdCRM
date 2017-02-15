@@ -10,45 +10,45 @@ import java.io.Serializable;
 public class Clients implements Serializable {
 
     private int id;
-    private String name;
-    private boolean prospect;
-    private int phone;
-    private String address;
+    private String firstname;
+    private String lastname;
+    private String company;
+    private String address1;
+    private String address2;
     private String city;
     private String state;
     private int zip;
-    private String company;
-    private int companyId;
-    private String customersince;
-
-    public void setId(int i) {
-        id = i;
-    }
+    private int phone;
+    private String email;
+    private boolean prospect;
     
+   
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLastname() {
+        return lastname;
     }
 
-
-    public boolean isProspect() {
-        return prospect;
+    public String getCompany() {
+        return company;
     }
 
-    public int getPhone() {
-        return phone;
+    public String getAddress1() {
+        return address1;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddress2() {
+        return address2;
     }
 
     public String getCity() {
@@ -63,28 +63,37 @@ public class Clients implements Serializable {
         return zip;
     }
 
-    public String getCompany() {
-        return company;
+    public int getPhone() {
+        return phone;
     }
 
-    public int getCompanyId() {
-        return companyId;
+    public String getEmail() {
+        return email;
     }
 
-    public String getCustomersince() {
-        return customersince;
+    public boolean isProspect() {
+        return prospect;
     }
 
-    public void setProspect(boolean prospect) {
-        this.prospect = prospect;
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
     }
 
     public void setCity(String city) {
@@ -99,22 +108,25 @@ public class Clients implements Serializable {
         this.zip = zip;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setCustomersince(String customersince) {
-        this.customersince = customersince;
+    public void setProspect(boolean prospect) {
+        this.prospect = prospect;
     }
 
+    
+
+    @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
         buffer.append("ID: " + this.id + ";");
-        buffer.append("Name: " + this.name);
+        buffer.append("Name: " + this.firstname + this.lastname);
         return buffer.toString();
     }
 }
