@@ -14,7 +14,7 @@ import objects.Clients;
 @Controller
 public class HomeController {
      @RequestMapping("/")
-    public ModelAndView viewclient(){
+    public ModelAndView viewclients(){
         return new ModelAndView("index");
     }
     
