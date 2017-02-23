@@ -21,12 +21,11 @@ public class Clients implements Serializable {
     private int phone;
     private String email;
     private boolean prospect;
-    
-   
+
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -75,7 +74,6 @@ public class Clients implements Serializable {
         return prospect;
     }
 
-
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -119,8 +117,6 @@ public class Clients implements Serializable {
     public void setProspect(boolean prospect) {
         this.prospect = prospect;
     }
-
-    
 
     @Override
     public String toString() {
