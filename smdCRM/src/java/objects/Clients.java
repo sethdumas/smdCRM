@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package objects;
 
 import java.io.Serializable;
@@ -17,8 +18,8 @@ public class Clients implements Serializable {
     private String address2;
     private String city;
     private String state;
-    private int zip;
-    private int phone;
+    private String zip;
+    private String phone;
     private String email;
     private boolean prospect;
 
@@ -58,11 +59,11 @@ public class Clients implements Serializable {
         return state;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -102,11 +103,11 @@ public class Clients implements Serializable {
         this.state = state;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -118,11 +119,19 @@ public class Clients implements Serializable {
         this.prospect = prospect;
     }
 
-    @Override
+  
     public String toString() {
         StringBuffer buffer = new StringBuffer();
         buffer.append("ID: " + this.id + ";");
         buffer.append("Name: " + this.firstname + this.lastname);
+        buffer.append("Company: " + this.company +";");
+        buffer.append("Address 1: " + this.address1 +":");
+        buffer.append("Address 2: " + this.address2 +":");
+        buffer.append("City: " + this.city +":");
+        buffer.append("State: " + this.state +":");
+        buffer.append("ZIP Code: " + this.zip +":");
+        buffer.append("Phone Number: " + this.phone +":");
+        buffer.append("Email: " + this.email +":");
         return buffer.toString();
     }
 }

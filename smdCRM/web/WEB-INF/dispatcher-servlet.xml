@@ -13,8 +13,8 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
   
-  <context:component-scan base-package="edu.uca.aca2016.web"></context:component-scan>  
-  <context:component-scan base-package="edu.uca.aca2016.validation"></context:component-scan>  
+  <context:component-scan base-package="web"></context:component-scan>  
+  <context:component-scan base-package="validation"></context:component-scan>  
   
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
     <property name="prefix" value="/WEB-INF/jsp/"></property>  
@@ -33,11 +33,27 @@
     <property name="dataSource" ref="ds"></property>  
   </bean>  
   
-  <bean id="artist-dao" class="edu.uca.aca2016.repository.ArtistDAO">  
+  <bean id="dao" class="repository.ClientsDAO">  
     <property name="template" ref="jt"></property>  
   </bean>
-  <bean id="album-dao" class="edu.uca.aca2016.repository.AlbumDAO">  
+  <bean id="dao2" class="repository.InteractionsDAO">  
     <property name="template" ref="jt"></property>  
-  </bean>  
+  </bean>
+  <bean id="dao3" class="repository.UsersDAO">  
+        <property name="template" ref="jt"></property>  
+    </bean>  
+  
+      
 </beans>
+
+
+
+
+
+
+
+
+
+
+
 

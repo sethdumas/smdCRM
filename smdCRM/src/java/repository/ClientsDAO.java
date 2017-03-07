@@ -88,8 +88,8 @@ public class ClientsDAO {
                 a.setAddress2(rs.getString(6));
                 a.setCity(rs.getString(7));
                 a.setState(rs.getString(8));
-                a.setZip(rs.getInt(9));
-                a.setPhone(rs.getInt(10));
+                a.setZip(rs.getString(9));
+                a.setPhone(rs.getString(10));
                 a.setEmail(rs.getString(11));
                 a.setProspect(rs.getBoolean(12));
 

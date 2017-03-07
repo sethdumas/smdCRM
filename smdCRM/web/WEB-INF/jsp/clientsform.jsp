@@ -4,7 +4,7 @@
 <%@ include file="theme/header.jsp" %>
 
 <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> Manage Clients > Add Client</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Manage Clients > Add Clients</b></h5>
 </header>
 
 <div class="w3-row-padding w3-half w3-margin-bottom">
@@ -14,33 +14,62 @@
             <h2>Client Information</h2>
         </div>
 
-        <form:form method="post" action="/smdCRM/clients/save" cssClass="w3-container">
+        <form:form method="post" action="save" cssClass="w3-container" commandName="client">
             <div class="w3-padding-8">
-                <label><b>Title</b></label>
-                <form:input path="title" cssClass="w3-input w3-border"  />
+                <label><b>First Name</b></label>
+                <form:input path="firstname" cssClass="w3-input w3-border"  />
+                <form:errors path="firstname" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>
+            <div class="w3-padding-8">
+                <label><b>Last Name</b></label>
+                <form:input path="lastname" cssClass="w3-input w3-border"  />
+                <form:errors path="lastname" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>
+            <div class="w3-padding-8">
+                <label><b>Address 1</b></label>
+                <form:input path="address1" cssClass="w3-input w3-border"  />
+                <form:errors path="address1" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>
+            <div class="w3-padding-8">
+                <label><b>Address 2</b></label>
+                <form:input path="address2" cssClass="w3-input w3-border"  />
+                <form:errors path="address2" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>
+            <div class="w3-padding-8">
+                <label><b>City</b></label>
+                <form:input path="city" cssClass="w3-input w3-border"  />
+                <form:errors path="city" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>
+            <div class="w3-padding-8">
+                <label><b>State</b></label>
+                <form:select path="state" cssClass="w3-select w3-border">
+                    <form:option value="">State</form:option>
+                    <form:options items="${client.states}"  />
+                </form:select>
+            </div>
+            <div class="w3-padding-8">
+                <label><b>Zip</b></label>
+                <form:input path="zip" cssClass="w3-input w3-border"  />
+                <form:errors path="zip" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>
+                <div class="w3-padding-8">
+                <label><b>Phone</b></label>
+                <form:input path="phone" cssClass="w3-input w3-border"  />
+                <form:errors path="phone" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>
+            <div class="w3-padding-8">    
+            <label><b>Email</b></label>
+                <form:input path="email" cssClass="w3-input w3-border"  />
+                <form:errors path="email" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
+            </div>            
+            <div class="w3-padding-8">
+                <label><b>Status</b></label>
+                <form:select path="status" cssClass="w3-select w3-border">
+                    
+                    <form:options items="${client.stat}"  />
+                </form:select>
             </div>
 
-            <c:choose>
-                <c:when test="${not empty command.client}">
-                    <form:hidden path="id" />
-                    <div class="w3-padding-8">
-                        <label><b>Client</b></label>
-                        <div class="w3-panel w3-border">
-                            <p><b>${command.clients.name}</b></p>
-                        </div>
-                    </div>
-                </c:when>
-
-                <c:otherwise>
-                    <div class="w3-padding-8">
-                        <label><b>Client</b></label>
-                        <form:select path="id" cssClass="w3-select w3-border">
-                            <form:option value="-1">Select Client</form:option>
-                            <form:options items="${command.clients}"  />
-                        </form:select>
-                    </div>
-                </c:otherwise>
-            </c:choose>
 
             <div class="w3-padding-8">
                 <button type="submit" class="w3-btn w3-padding w3-blue" style="width:120px">Save</button>

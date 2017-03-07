@@ -12,66 +12,103 @@ package objects;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 
 public class Interactions implements Serializable {
     
     private int interactionid;
-    private String typeofinteraction;
     private int clientid;
-    private String clientname;
-    private String clientuser;
+    private String userid;
+    private String firstname;
+    private String lastname;
+    private String typeofinteraction;
     private Date interactiontime;
+    private Clients client;
+    private Map<Integer, String> clients;
+    private Map<String, String> user;
 
-    public int getInteractionid() {
-        return interactionid;
+    public Clients getClient() {
+        return client;
     }
 
-    public String getTypeofinteraction() {
-        return typeofinteraction;
+    public Map<Integer, String> getClients() {
+        return clients;
+    }
+
+    public Map<String, String> getUser() {
+        return user;
+    }
+
+    
+    
+    public int getInteractionid() {
+        return interactionid;
     }
 
     public int getClientid() {
         return clientid;
     }
 
-    public String getClientname() {
-        return clientname;
+    public String getUserid() {
+        return userid;
     }
 
-    public String getClientuser() {
-        return clientuser;
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getTypeofinteraction() {
+        return typeofinteraction;
     }
 
     public Date getInteractiontime() {
         return interactiontime;
     }
 
-    public void setInteractionid(int interactionid) {
-        this.interactionid = interactionid;
+    public void setClient(Clients client) {
+        this.client = client;
     }
 
-    public void setTypeofinteraction(String typeofinteraction) {
-        this.typeofinteraction = typeofinteraction;
+    public void setClients(Map<Integer, String> clients) {
+        this.clients = clients;
+    }
+
+    public void setUser(Map<String, String> user) {
+        this.user = user;
+    }
+
+    
+    
+    public void setInteractionid(int interactionid) {
+        this.interactionid = interactionid;
     }
 
     public void setClientid(int clientid) {
         this.clientid = clientid;
     }
 
-    public void setClientname(String clientname) {
-        this.clientname = clientname;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
-    public void setClientuser(String clientuser) {
-        this.clientuser = clientuser;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setTypeofinteraction(String typeofinteraction) {
+        this.typeofinteraction = typeofinteraction;
     }
 
     public void setInteractiontime(Date interactiontime) {
         this.interactiontime = interactiontime;
     }
-    
-    
-    
-    
-    
+
 }
