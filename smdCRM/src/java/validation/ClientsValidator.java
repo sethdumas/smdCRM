@@ -30,11 +30,11 @@ public class ClientsValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"firstName", "Clients.firstName.required");
-       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"lastName", "Clients.lastName.required");
+       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"firstname", "Clients.firstname.required");
+       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"lastname", "Clients.lastname.required");
        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"company", "Clients.company.required");
        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"address1", "Clients.address1.required");
-       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"address2", "Clients.address2.required");
+       //ValidationUtils.rejectIfEmptyOrWhitespace(errors,"address2", "Clients.address2.required");
        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"city", "Clients.city.required");
        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"state", "Clients.state.required");
        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"zip", "Clients.zip.required");

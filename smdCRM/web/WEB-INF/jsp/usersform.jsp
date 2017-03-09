@@ -31,7 +31,7 @@
                 <form:errors path="password" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
             </div>
             
-                <label><b>Roles</b></label>
+                <label><b>Role</b></label>
                 <form:select multiple="true" path="userrole" cssClass="w3-select w3-border">
 
                     <form:options items="${users.rolemap}"  />

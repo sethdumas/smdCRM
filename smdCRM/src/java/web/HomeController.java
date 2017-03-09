@@ -5,6 +5,8 @@ package web;
  * @author sethd
 */
 
+import static com.sun.faces.facelets.util.Path.context;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,13 @@ public class HomeController {
     
     @RequestMapping("/")
     public ModelAndView viewclients(){
+        
+        HashMap<String, Object> context = new HashMap<>();
+        context.put("crow", dao.getClientsCount());
+        context.put("irow", idao.getInteractionsCount());
+        
+        
+        
         return new ModelAndView("index");
     }
     

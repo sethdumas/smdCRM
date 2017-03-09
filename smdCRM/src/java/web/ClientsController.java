@@ -64,7 +64,7 @@ public class ClientsController {
         return new ModelAndView("redirect:/clients/viewclients");
     }
 
-    @RequestMapping("/client/viewclients")
+    @RequestMapping("/clients/viewclients")
     public ModelAndView viewclients(HttpServletRequest request) {
         return this.viewclients(1, request);
     }

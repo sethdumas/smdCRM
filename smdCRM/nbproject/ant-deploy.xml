@@ -24,7 +24,7 @@
         <xmlproperty file="${temp.sun.web}" validate="false">
         </xmlproperty>    
         <delete file="${temp.sun.web}"/>
-        <condition property="deploy.ant.client.url" value="${gfv3.url}${sun-web-app.context-root}" else="${gfv3.url}/${ant.project.name}">
+        <condition property="deploy.ant.clients.url" value="${gfv3.url}${sun-web-app.context-root}" else="${gfv3.url}/${ant.project.name}">
             <isset property="sun-web-app.context-root"/>
         </condition>
         <condition property="deploy.context.root.argument" value="&amp;contextroot=${sun-web-app.context-root}" else="/${ant.project.name}">
@@ -46,7 +46,7 @@
         <xmlproperty file="${temp.gf.web}" validate="false">
         </xmlproperty>
         <delete file="${temp.gf.web}"/>
-        <condition property="deploy.ant.client.url" value="${gfv3.url}${glassfish-web-app.context-root}" else="${gfv3.url}/${ant.project.name}">
+        <condition property="deploy.ant.clients.url" value="${gfv3.url}${glassfish-web-app.context-root}" else="${gfv3.url}/${ant.project.name}">
             <isset property="glassfish-web-app.context-root"/>
         </condition>
         <condition property="deploy.context.root.argument" value="&amp;contextroot=${glassfish-web-app.context-root}" else="/${ant.project.name}">

@@ -14,7 +14,7 @@
             <h2>Client Information</h2>
         </div>
 
-        <form:form method="post" action="save" cssClass="w3-container" commandName="client">
+        <form:form method="post" action="save" cssClass="w3-container" commandName="clients">
             <div class="w3-padding-8">
                 <label><b>First Name</b></label>
                 <form:input path="firstname" cssClass="w3-input w3-border"  />
@@ -42,10 +42,8 @@
             </div>
             <div class="w3-padding-8">
                 <label><b>State</b></label>
-                <form:select path="state" cssClass="w3-select w3-border">
-                    <form:option value="">State</form:option>
-                    <form:options items="${client.states}"  />
-                </form:select>
+                <form:input path="state" cssClass="w3-input w3-border"  />
+                <form:errors path="state" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
             </div>
             <div class="w3-padding-8">
                 <label><b>Zip</b></label>
@@ -62,15 +60,13 @@
                 <form:input path="email" cssClass="w3-input w3-border"  />
                 <form:errors path="email" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
             </div>            
-            <div class="w3-padding-8">
-                <label><b>Status</b></label>
-                <form:select path="status" cssClass="w3-select w3-border">
-                    
-                    <form:options items="${client.stat}"  />
-                </form:select>
+           <div class="w3-padding-8">
+                <label><b>Prospect</b></label>
+                <form:input path="prospect" cssClass="w3-input w3-border"  />
+                <form:errors path="prospect" cssClass="w3-red w3-padding-8 w3-panel" cssStyle="display: block; width: 100%; font-weight:bold;" />
             </div>
-
-
+               
+           
             <div class="w3-padding-8">
                 <button type="submit" class="w3-btn w3-padding w3-blue" style="width:120px">Save</button>
             </div>
