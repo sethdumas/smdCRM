@@ -99,11 +99,11 @@ public class ClientsDAO {
     }
 
     public int getClientsCount() {
-        String sql = "SELECT COUNT(id) AS rowcount FROM clients";
+        String sql = "SELECT COUNT(id) AS crow FROM clients";
         SqlRowSet rs = template.queryForRowSet(sql);
 
         if (rs.next()) {
-            return rs.getInt("rowcount");
+            return rs.getInt("crow");
         }
 
         return 1;

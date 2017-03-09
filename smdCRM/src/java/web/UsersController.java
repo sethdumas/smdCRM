@@ -73,7 +73,7 @@ public class UsersController {
      */
     @RequestMapping("/user/viewuser/{pageid}")
     public ModelAndView viewusers(@PathVariable int pageid, HttpServletRequest request) {
-        int total = 25;
+        int total = 10;
         int start = 1;
 
         if (pageid != 1) {

@@ -49,6 +49,7 @@
                     <a href="<c:url value="/clients/clientsform" />" class="w3-padding w3-blue"><i class="fa fa-circle fa-fw"></i>  Add Client  <i class="fa fa-caret-down"></i></a>
                     <a href="<c:url value="/interactions/viewinteractions" />" class="w3-padding w3-blue"><i class="fa fa-circle fa-fw"></i>  View Interactions  <i class="fa fa-caret-down"></i></a>
                     <a href="<c:url value="/interactions/interactionsform" />" class="w3-padding w3-blue"><i class="fa fa-circle fa-fw"></i>   Add Interaction  <i class="fa fa-caret-down"></i></a>
+                    
                 </div>
             </sec:authorize>
 

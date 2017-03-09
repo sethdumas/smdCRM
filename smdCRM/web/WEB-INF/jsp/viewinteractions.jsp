@@ -27,7 +27,7 @@
         <tr>
             <th>Interaction Id</th>
             <th>Client Id</th>
-            <th>User Id</th>
+            <th>User</th>
             <th>Interaction Type</th>
             <th>Interaction Date</th>
             <th>Action</th>
@@ -37,7 +37,7 @@
             <tr> 
                 <td>${interactions.interactionid}</td>
                 <td>${interactions.clientid}</td>
-                <td>${interactions.userid}</td>
+                <td>${interactions.username}</td>
                 <td>${interactions.typeofinteraction}</td>
                 <td>${interactions.interactiontime}</td>
                 <td>

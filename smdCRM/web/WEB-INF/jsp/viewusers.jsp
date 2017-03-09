@@ -29,17 +29,18 @@
                 
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">  
         <tr>
-            <th>User Id</th>
+            
             <th>Username</th>
-            <th>Enabled</th>
+            <th>Role</th>
             <th>Action</th>
         </tr>  
 
         <c:forEach var="users" items="${list}">   
             <tr>  
-                <td>${users.userid}</td>  
+                
                 <td>${users.username}</td>
-                <td><c:choose>
+                <td>${users.role}</td>
+                <%--                <td><c:choose>
     <c:when test="${users.enabled == 0}">
        No
     </c:when>
@@ -48,9 +49,10 @@
     </c:when>
     
 </c:choose></td>
+                --%>                
                 <td>
                     <a href="<c:url value="/users/editusers/${users.username}" />"><button class="w3-btn w3-round w3-blue">Edit</button></a>
-                    
+                    <a href="<c:url value="/users/deleteusers/${users.username}"/>"><button class="w3-btn w3-round w3-red" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button></a>
                 </td>  
             </tr>  
         </c:forEach>  

@@ -30,17 +30,17 @@ public class UsersDAO {
     }
     
     public int save(Users users) {
-        String sql = "INSERT INTO users (username, password, userrole, enabled) values (?, md5(?), ?, ?)";
+        String sql = "INSERT INTO users (username, password, role) values (?, md5(?), ?)";
 
-        Object[] values = {users.getUsername(), users.getPassword(), users.getUserrole(),users.getEnabled()};
+        Object[] values = {users.getUsername(), users.getPassword(), users.getRole()};
 
         logger.info("Users DAO save values: " + values);
 
         int r = template.update(sql, values);
 
-        sql = "INSERT INTO user_roles (username, userrole) VALUES (?, ?)";
+        sql = "INSERT INTO user_roles (username, role) VALUES (?, ?)";
 
-        for (String role : users.getUserrole()) {
+        for (String role : users.getRole()) {
             Object[] role_values = {users.getUsername(), role};
 
             logger.info("Users DAO add role: " + values);
@@ -51,28 +51,54 @@ public class UsersDAO {
         return r;
     }
     
-    public int update(Users users) {
-        String sql = "UPDATE users SET (username = ?, password = md5(?), userrole = ?, enabled = ?) WHERE Username = ?";
-
-        Object[] values = {users.getUsername(), users.getPassword(), users.getEnabled()};
-
-        logger.info("Users DAO save values: " + values);
-
+     public int update(Users users) {
+       
+      String  sql = "DELETE From user_roles WHERE username = ?";
+        Object[] delete = {users.getUsername()};
+        template.update(sql, delete);
+        
+        sql = "INSERT INTO user_roles (username, role) VALUES (?, ?)";
+        
+        for (String role: users.getRole()) {
+            Object[] role_values = {users.getUsername(), role};
+            
+           
+            
+            template.update(sql, role_values);
+        
+    }
+        
+        
+        sql = "UPDATE users SET (username = ?, 'password' = md5(?), role = ?) WHERE Username = ?";
+        Object[] values = {users.getUsername(), users.getPassword(), users.getRole()};
         int r = template.update(sql, values);
-
-        sql = "UPDATE INTO user_roles (username, role) VALUES (?, ?)";
-
-        for (String userrole : users.getUserrole()) {
-            Object[] role_values = {users.getUsername(), userrole};
-
-            logger.info("Users DAO update role: " + values);
-
-            return template.update(sql, values);
-        }
-
-        return r;
+        
+        
+     return r;   
     }
     
+//    public int update(Users users) {
+//        String sql = "UPDATE users SET (username = ?, password = md5(?), role = ?) WHERE Username = ?";
+//
+//        Object[] values = {users.getUsername(), users.getPassword(), users.getRole()};
+//
+//        logger.info("Users DAO save values: " + values);
+//
+//        int r = template.update(sql, values);
+//
+//        sql = "UPDATE INTO user_roles (username, role) VALUES (?, ?)";
+//
+//        for (String role : users.getRole()) {
+//            Object[] role_values = {users.getUsername(), role};
+//
+//            logger.info("Users DAO update role: " + values);
+//
+//            return template.update(sql, values);
+//        }
+//
+//        return r;
+//    }
+//    
     public int delete(Users users) {
         String sql = "DELETE FROM users WHERE username = ?";
         Object[] values = {users.getUsername()};
@@ -85,7 +111,7 @@ public class UsersDAO {
                 Users u = new Users();
                 u.setUsername(rs.getString("Username"));
                 u.setPassword(rs.getString("Password"));
-                u.setEnabled(rs.getBoolean("Enabled"));
+//                u.setEnabled(rs.getBoolean("Enabled"));
                 return u;
             }
         });
@@ -103,7 +129,7 @@ public class UsersDAO {
             public Users mapRow(ResultSet rs, int row) throws SQLException {
                 Users u = new Users();
                 u.setUsername(rs.getString(1));
-                u.setEnabled(rs.getBoolean(2));
+//                u.setEnabled(rs.getBoolean(2));
                 return u;
             }
         });

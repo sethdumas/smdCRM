@@ -12,7 +12,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import java.util.regex.Pattern;
-
 /**
  *
  * @author sethd
@@ -30,10 +29,11 @@ public class UsersValidator implements Validator {
     
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Username", "users.Username.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Password", "users.Password.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "users.username.required");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "users.password.required");
 
         Users users = (Users) target;
+        
         if (users.getUsername().length() > 45) {
             errors.rejectValue("username", "users.username.length");
         }
@@ -42,13 +42,13 @@ public class UsersValidator implements Validator {
             errors.rejectValue("username", "users.username.pattern");
         }
 
-        if (users.getPassword().length() <= 8 && users.getPassword().length() >= 12) {
-            errors.rejectValue("password", "users.password.length");
-        }
+       // if (users.getPassword().length() <= 8 && users.getPassword().length() >= 12) {
+       //     errors.rejectValue("password", "users.password.length");
+       // }
 
-        if (!users.getPassword().matches("^[A-Za-z0-9]*$")) {
-            errors.rejectValue("password", "users.password.pattern");
-        }
+      //  if (!users.getPassword().matches("^[A-Za-z0-9]*$")) {
+      //      errors.rejectValue("password", "users.password.pattern");
+      //  }
     }
 
 }

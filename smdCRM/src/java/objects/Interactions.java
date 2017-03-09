@@ -18,11 +18,11 @@ public class Interactions implements Serializable {
     
     private int interactionid;
     private int clientid;
-    private String userid;
-    private String firstname;
-    private String lastname;
+    private String username;
+    //private String firstname;
+    //private String lastname;
     private String typeofinteraction;
-    private Date interactiontime;
+    private String interactiontime;
     private Clients client;
     private Map<Integer, String> clients;
     private Map<String, String> user;
@@ -49,23 +49,23 @@ public class Interactions implements Serializable {
         return clientid;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getUsername() {
+        return username;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
+//    public String getFirstname() {
+//        return firstname;
+//    }
 
-    public String getLastname() {
-        return lastname;
-    }
+//    public String getLastname() {
+//        return lastname;
+//    }
 
     public String getTypeofinteraction() {
         return typeofinteraction;
     }
 
-    public Date getInteractiontime() {
+    public String getInteractiontime() {
         return interactiontime;
     }
 
@@ -91,23 +91,17 @@ public class Interactions implements Serializable {
         this.clientid = clientid;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+//    s
 
     public void setTypeofinteraction(String typeofinteraction) {
         this.typeofinteraction = typeofinteraction;
     }
 
-    public void setInteractiontime(Date interactiontime) {
+    public void setInteractiontime(String interactiontime) {
         this.interactiontime = interactiontime;
     }
 

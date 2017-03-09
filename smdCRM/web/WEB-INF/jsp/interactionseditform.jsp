@@ -14,7 +14,7 @@
       <h2>Interaction Information</h2>
     </div>
 
-    <form:form method="POST" action="/smdCRM/interactions/editsave" cssClass="w3-container" commandName="interactionid">
+    <form:form method="POST" action="/smdCRM/interactions/editsave" cssClass="w3-container" commandName="interactions">
       <form:hidden path="interactionid"  />
       
       <div class="w3-padding-8">

@@ -17,6 +17,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import objects.Clients;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import java.text.DateFormat;
+import java.util.Date;
 /**
  *
  * @author sethd
@@ -31,9 +33,9 @@ public class InteractionsDAO {
     }
     
     public int save(Interactions interactions){
-        String sql = "INSERT INTO interactions (interactionid, clientid, userid, firstname, lastname, typeofinteraction, interactiontime) values(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO interactions (interactionid, clientid, username, typeofinteraction, interactiontime) values(?, ?, ?, ?, ?)";
 
-        Object[] values = {interactions.getInteractionid(), interactions.getClientid(), interactions.getUserid(), interactions.getFirstname(), interactions.getLastname(), interactions.getTypeofinteraction(), interactions.getInteractiontime()};
+        Object[] values = {interactions.getInteractionid(), interactions.getClientid(), interactions.getUsername(), interactions.getTypeofinteraction(), interactions.getInteractiontime()};
 
         logger.info("Interactions DAO save values: " + values);
         
@@ -41,31 +43,33 @@ public class InteractionsDAO {
     }
     
      public int update(Interactions interactions){
-        String sql = "UPDATE interactions SET clientid = ?,userid = ?, firstname = ?, lastname = ?, typeofinteraction = ?, interactiontime = ? WHERE interactionid = ?";
+        String sql = "UPDATE interactions SET clientid = ?,username = ?, typeofinteraction = ?, interactiontime = ? WHERE interactionid = ?";
 
-        Object[] values = {interactions.getClientid(),interactions.getUserid(), interactions.getFirstname(), interactions.getLastname(), interactions.getTypeofinteraction(), interactions.getInteractiontime()};
+        Object[] values = {interactions.getClientid(),interactions.getUsername(), interactions.getTypeofinteraction(), interactions.getInteractiontime()};
 
         return template.update(sql,values);
     }
      
      public int delete(int interactionid){
-        String sql = "DELETE FROM interactions WHERE interactionid = ?";
+        String sql = "DELETE FROM interactions WHERE interactionid =" + interactionid + "";
 
-        Object[] values = {interactionid};
+    //    Object[] values = {interactionid};
 
-        return template.update(sql,values);
+        return template.update(sql);
     }
      
-     public List<Interactions> getInteractionsList() {
-        return template.query("SELECT * FROM interactions", new RowMapper<Interactions>() {
+     public List<Interactions> getInteractionsList(int clientid) {
+        return template.query("SELECT * FROM interactions WHERE clientid = " + clientid, new RowMapper<Interactions>() {
+            @Override
             public Interactions mapRow(ResultSet rs, int row) throws SQLException {
                 Interactions i = new Interactions();
-                i.setClientid(rs.getInt("Client ID"));
-                i.setUserid(rs.getString("User ID"));
-                i.setFirstname(rs.getString("First Name"));
-                i.setLastname(rs.getString("Last Name"));
-                i.setTypeofinteraction(rs.getString("Contact Type"));
-                i.setInteractiontime(rs.getDate("Date Of Contact"));
+                i.setInteractionid(rs.getInt(1));
+                i.setClientid(rs.getInt(2));
+                i.setUsername(rs.getString(3));
+//                i.setFirstname(rs.getString("First Name"));
+//                i.setLastname(rs.getString("Last Name"));
+                i.setTypeofinteraction(rs.getString(4));
+                i.setInteractiontime(rs.getString(5));
                 
                 return i;
             }
@@ -73,25 +77,27 @@ public class InteractionsDAO {
     }
      
      public Interactions getInteractionsById(int interactionid) {
-        String sql = "SELECT interactionid AS interactionid, clientid, userid, firstname, lastname, typeofinteraction, interactiontime FROM interactions WHERE interactionid = ?";
+         
+        String sql = "SELECT * FROM interactions WHERE interactionid = ?";
         return template.queryForObject(sql, new Object[]{interactionid}, new BeanPropertyRowMapper<Interactions>(Interactions.class));
     }
     
     public List<Interactions> getInteractionsByPage(int start, int total) {
-        String sql = "SELECT interactions.interactionid, interactions.clientid, interactions.firstname, interactions.lastname, interactions.typeofinteraction, interactions.interactiontime, clients.id, clients.firstname, clients.lastname "
-                + "FROM Interactions AS interactions "
+        String sql = "SELECT interactions.interactionid, interactions.clientid, interactions.username, interactions.typeofinteraction, interactions.interactiontime, clients.id "
+                + "FROM interactions AS interactions "
                 + "INNER JOIN Clients AS clients ON clients.id = interactions.clientid "
-                + "ORDER BY clients.firstname, interactions.interactiontime "
+                + "ORDER BY clients.id, interactions.interactiontime "
                 + "LIMIT " + (start - 1) + "," + total;
         return template.query(sql, new RowMapper<Interactions>() {
+            @Override
             public Interactions mapRow(ResultSet rs, int row) throws SQLException {
                 Interactions i = new Interactions();
                 i.setInteractionid(rs.getInt(1));
                 i.setClientid(rs.getInt(2));
-                i.setFirstname(rs.getString(3));
-                i.setLastname(rs.getString(4));
+//                i.setFirstname(rs.getString(3));
+//                i.setLastname(rs.getString(4));
                 i.setTypeofinteraction(rs.getString(5));           
-                i.setInteractiontime(rs.getDate(6));
+                i.setInteractiontime(rs.getString(6));
 
 
                 Clients clients = new Clients();
@@ -106,11 +112,11 @@ public class InteractionsDAO {
         });
     }
     public int getInteractionsCount() {
-        String sql = "SELECT COUNT(interactionid) AS rowcount FROM interactions";
+        String sql = "SELECT COUNT(interactionid) AS irow FROM interactions";
         SqlRowSet rs = template.queryForRowSet(sql);
 
         if (rs.next()) {
-            return rs.getInt("rowcount");
+            return rs.getInt("irow");
         }
 
         return 1;

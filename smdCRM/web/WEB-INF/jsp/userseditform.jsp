@@ -16,7 +16,7 @@
 
     <div class="w3-card-4">
         <div class="w3-container w3-blue">
-            <h2>Header</h2>
+            <h2>Edit User</h2>
         </div>
 
         <form:form method="POST" action="/smdCRM/users/editsave" cssClass="w3-container" commandName="users">
@@ -34,18 +34,19 @@
             </div>
             <div class="w3-padding-8">
                 <label><b>Roles</b></label>
-                <form:select  multiple="true" path="userrole" cssClass="w3-select w3-border">
+                <form:select  multiple="true" path="role" cssClass="w3-select w3-border">
 
                     <form:options items="${users.rolemap}"  />
                 </form:select>
             </div>
-            <div class="w3-padding-8">
+            <%-- <div class="w3-padding-8">
                 <label><b>Enabled</b></label>
                 <form:select path="enabled" cssClass="w3-select w3-border">
 
-                    <form:options items="${users.enabledMap}"  />
+                    <form:options items="${users.enablemap}"  />
                 </form:select>
             </div>
+            --%>
 
 
             <div class="w3-padding-8">

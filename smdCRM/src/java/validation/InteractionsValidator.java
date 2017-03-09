@@ -1,7 +1,7 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the editor.s
  */
 package validation;
 
@@ -14,7 +14,7 @@ import objects.Interactions;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-/**
+/**s
  *
  * @author sethd
  */
@@ -38,13 +38,13 @@ public class InteractionsValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "interactiontime", "interaction.interactiontime.required");
         Interactions interactions = (Interactions) target;
 
-        if (!interactions.getFirstname().matches("^[a-zA-Z0-9-_. ]+$")) {
-            errors.rejectValue("firstname", "interactions.firstname.pattern", "default");
-        }
-
-        if (!interactions.getLastname().matches("^[a-zA-Z0-9-_. ]+$")) {
-            errors.rejectValue("lastname", "interactions.lastname.pattern", "default");
-        }
+//        if (!interactions.getFirstname().matches("^[a-zA-Z0-9-_. ]+$")) {
+//            errors.rejectValue("firstname", "interactions.firstname.pattern", "default");
+//        }
+//
+//        if (!interactions.getLastname().matches("^[a-zA-Z0-9-_. ]+$")) {
+//            errors.rejectValue("lastname", "interactions.lastname.pattern", "default");
+//        }
     }
 
 }

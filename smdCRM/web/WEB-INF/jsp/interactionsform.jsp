@@ -14,14 +14,10 @@
       <h2>Interaction Information</h2>
     </div>
 
-    <form:form method="post" action="/smdCRM/interactions/save" cssClass="w3-container">
-      <div class="w3-padding-8">
-        <label><b>Title</b></label>
-        <form:input path="title" cssClass="w3-input w3-border"  />
-      </div>
+    <form:form method="post" action="save" cssClass="w3-container" commandName="interactions">
       
       <c:choose>
-      <c:when test="${not empty command.artist}">
+      <c:when test="${not empty command.clients}">
         <form:hidden path="interactionid" />
         <div class="w3-padding-8">
           <label><b>Interaction</b></label>
@@ -36,7 +32,7 @@
           <label><b>Interaction</b></label>
           <form:select path="interactionid" cssClass="w3-select w3-border">
               <form:option value="-1">Select Interaction</form:option>
-              <form:options items="${command.interactions}"  />
+              <form:options items="${command.Interactions}"  />
           </form:select>
         </div>
       </c:otherwise>
